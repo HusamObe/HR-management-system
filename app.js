@@ -29,7 +29,11 @@ Employee.prototype.salaryCalc = function () {
 
 
 Employee.prototype.renderInfo = function () {
-    document.write(`Name ${this.fullName} Salary ${this.salaryCalc()} `)
+    // // // document.write(`<main>Name: ${this.fullName} ,Salary= ${this.salaryCalc()} </main>`)
+    document.write(`<h1>Name: ${this.fullName} ,Salary= ${this.salaryCalc()} </h1>`);
+    // const emplyeeDetails = `<div><h1>Name: ${this.fullName} ,Salary= ${this.salaryCalc()} </h1></div>`;
+    // const navBar = document.getElementById('navi bar');
+    // navBar.insertAdjacentHTML('afterend', emplyeeDetails)
 
 }
 
@@ -61,8 +65,8 @@ for (let i = 0; i < arrEmpolyee.length; i++) {
     arrEmpolyee[i].renderInfo();
 }
 
-console.log(arrEmpolyee);
-console.log(netSalary1);
+// console.log(arrEmpolyee);
+// console.log(netSalary1);
 // console.log(netSalary2);
 // console.log(netSalary3);
 // console.log(netSalary4);
