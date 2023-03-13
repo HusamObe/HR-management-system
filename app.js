@@ -31,7 +31,7 @@ Employee.prototype.salaryCalc = function () {
             break;
     }
 
-    return (salaryLevel * (1 - 0.075));
+    return Math.floor(salaryLevel * (1 - 0.075));
 }
 
 Employee.prototype.renderData = function () {
