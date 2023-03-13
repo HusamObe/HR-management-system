@@ -1,76 +1,65 @@
-'use strict';
+'use strict'
+
+const allEmployees = [];
+let empForm = document.getElementById("form");
+let empCard = document.getElementById("empCard");
 
 
-const arrEmpolyee = [];
 
-function Employee(id, name, department, level, img) {
-    this.employeeID = id;
-    this.fullName = name;
+function Employee(name, department, level, image) {
+    this.id = generateRandomId();
+    this.name = name;
     this.department = department;
     this.level = level;
-    this.department;
-    this.img = img;
+    this.imgUrl = image;
+    this.salary = this.salaryCalc();
 
-    arrEmpolyee.push(this);
 }
+
 
 Employee.prototype.salaryCalc = function () {
-    const salaryRanges = {
-        'Senior': [1500, 2000],
-        'Mid-Senior': [1000, 1500],
-        'Junior': [500, 1000]
-    };
-    const [minSalary, maxSalary] = salaryRanges[this.level];
-    const randomSalary = Math.floor(Math.random() * (maxSalary - minSalary + 1)) + minSalary;
-    const netSalary = Math.floor(randomSalary * (1 - 0.075));
-    return netSalary;
+    let salaryLevel = 0;
+    switch (this.level) {
+        case "Junior":
+            salaryLevel = Math.floor(Math.random() * (1000 - 500 + 1)) + 500;
+            break;
+        case "Mid-Senior":
+            salaryLevel = Math.floor(Math.random() * (1500 - 1000 + 1)) + 1000;
+            break;
+        case "Senior":
+            salaryLevel = Math.floor(Math.random() * (2000 - 1500 + 1)) + 1500;
+            break;
+    }
+
+    return Math.floor(salaryLevel * (1 - 0.075));
+}
+
+Employee.prototype.renderData = function () {
+    let imgSection = document.createElement("div");
+    imgSection.innerHTML = `
+    <div class="employeeCard">
+    <img src="${this.imgUrl}" alt="img">
+        <p>Name : ${this.name} - ID : ${this.id} - Department : ${this.department} - Level : ${this.level} - Salary : ${this.salary} </p>
+        </div>`;
+    empCard.appendChild(imgSection);
+}
+
+empForm.addEventListener('submit', submitHandler);
+
+function submitHandler(event) {
+    event.preventDefault();
+    let fullName = (event.target.name.value);
+    let depar = (event.target.department.value);
+    let empLevel = (event.target.level.value);
+    let imageURL = (event.target.img.value);
+
+    let newEmployee = new Employee(fullName, depar, empLevel, imageURL);
+    newEmployee.salaryCalc();
+    newEmployee.renderData();
+    allEmployees.push(newEmployee);
 }
 
 
-
-Employee.prototype.renderInfo = function () {
-    // // // document.write(`<main>Name: ${this.fullName} ,Salary= ${this.salaryCalc()} </main>`)
-    document.write(`<h1>Name: ${this.fullName} ,Salary= ${this.salaryCalc()} </h1>`);
-    // const emplyeeDetails = `<div><h1>Name: ${this.fullName} ,Salary= ${this.salaryCalc()} </h1></div>`;
-    // const navBar = document.getElementById('navi bar');
-    // navBar.insertAdjacentHTML('afterend', emplyeeDetails)
-
+function generateRandomId() {
+    return Math.floor(1000 + Math.random() * 9000);
 }
-
-
-
-const employee1 = new Employee(1000, ["Ghazi", "Samer"], "Administration", 'Senior', "./Mark-Zuckerberg.jpg");
-const netSalary1 = employee1.salaryCalc();
-
-const employee2 = new Employee(1001, ["Lana", "Ali"], "Finance", 'Senior', "./Mark-Zuckerberg.jpg");
-const netSalary2 = employee2.salaryCalc();
-
-const employee3 = new Employee(1002, ["Tamara", "Ayoub"], "Marketing", 'Senior', "./Mark-Zuckerberg.jpg");
-const netSalary3 = employee3.salaryCalc();
-
-const employee4 = new Employee(1003, ["Safi", " Walid"], "Administration", 'Mid-Senior', "./Mark-Zuckerberg.jpg");
-const netSalary4 = employee4.salaryCalc();
-
-const employee5 = new Employee(1004, ["Omar", "Zaid"], "Development", 'Senior', "./Mark-Zuckerberg.jpg");
-const netSalary5 = employee5.salaryCalc();
-
-const employee6 = new Employee(1005, ["Rana", "Saleh"], "Development", 'Junior', "./Mark-Zuckerberg.jpg");
-const netSalary6 = employee6.salaryCalc();
-
-const employee7 = new Employee(1006, ["Hadi", "Ahmad"], "Finance", 'Mid-Senior', "./Mark-Zuckerberg.jpg");
-const netSalary7 = employee7.salaryCalc();
-
-
-for (let i = 0; i < arrEmpolyee.length; i++) {
-    arrEmpolyee[i].renderInfo();
-}
-
-// console.log(arrEmpolyee);
-// console.log(netSalary1);
-// console.log(netSalary2);
-// console.log(netSalary3);
-// console.log(netSalary4);
-// console.log(netSalary5);
-// console.log(netSalary6);
-// console.log(netSalary7);
-
