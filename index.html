@@ -8,7 +8,7 @@
     <title>HR management system</title>
     <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/d0c74e7b47.js" crossorigin="anonymous"></script>
-    <script src="./app.js"></script>
+
 </head>
 
 <body>
@@ -16,17 +16,44 @@
         <div class="logo">
             <img src="./logo.png" alt="logo">
         </div>
-        <nav class="nav" id="navi bar">
+        <nav class="nav" id="navi-bar">
             <ul class="nav__list">
-                <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
-                <li class="nav__item"><a href="#services" class="nav__link">Accounting</a></li>
+                <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                <li class="nav__item"><a href="accounting.html" class="nav__link">Accounting</a></li>
             </ul>
         </nav>
     </header>
 
-    <div>
-        <script src="./app.js"></script>
-    </div>
+    <form id="form">
+        <label for="name">Full Name : </label>
+        <input type="text" id="name" value=""><br>
+        <label for="depart">Department : </label>
+
+        <select id="department">
+            <option value="administraion">Administration</option>
+            <option value="marketing">Marketing</option>
+            <option value="development">Development</option>
+            <option value="finance">Finance</option>
+        </select><br>
+
+        <label for="level">Level : </label>
+        <select id="level">
+            <option value="Junior">Junior</option>
+            <option value="Mid-Senior">Mid-Senior</option>
+            <option value="Senior">Senior</option>
+        </select><br>
+
+        <label for="image">Image url : </label>
+        <input type="text" id="img" value=""><br>
+
+        <button id="submit" value="submit">Submit</button>
+
+    </form>
+
+    <section id="empCard">
+
+    </section>
+
 
     <footer>
         <a href="mailto:husamhob91@gmail.com" class="footer__link">husamhob91@gmail.com</a>
@@ -49,6 +76,9 @@
         </ul>
     </footer>
 
+    <script src="./empolyee.js"></script>
+    <script src="./app.js"></script>
 </body>
+
 
 </html>
